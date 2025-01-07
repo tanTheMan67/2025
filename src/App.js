@@ -1,4 +1,8 @@
+import Body from "./Body";
+
 const App = ()=>(
-    <div className="hello"> itz hello react</div>
+    <div> 
+        <Body/>
+    </div>
 );
 export default App;

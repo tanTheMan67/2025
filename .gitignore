@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# Ignore system files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Ignore OS-specific folders
+.vscode/
+node_modules/
