@@ -3,6 +3,7 @@ import Title from "./Title";
 import {ValidateData} from "./utils/Validate";
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
 import { auth } from "./utils/Firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = ()=>{
     const [isLogin,setIsLogin]=useState(true);
@@ -10,6 +11,7 @@ const Login = ()=>{
     const toggleLogin = ()=>(
         setIsLogin(!isLogin)
     );
+    const navigate = useNavigate();
     const email = useRef(null);
     const password=useRef(null);
     const Handleclick =()=>{
@@ -21,6 +23,7 @@ const Login = ()=>{
   .then((userCredential) => {
     const user = userCredential.user;
     console.log(user);
+    navigate("/Browse");
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -32,6 +35,7 @@ const Login = ()=>{
     .then((userCredential) => { 
       const user = userCredential.user;
       console.log(user);
+      navigate("/Browse");
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -50,7 +54,7 @@ return(
   <h1> {!isLogin? "SIGN UP":"SIGN IN"}</h1>
   {!isLogin && <input className="login-input" placeholder="Enter Name"></input> }
     <input className="login-input" ref={email} placeholder="Enter Email"></input>
-    <input className="login-input"  ref={ password} placeholder="Enter Password"></input>
+    <input type="password" className="login-input"  ref={ password} placeholder="Enter Password"></input>
     <p className="validation">{errmessage}</p>
     <button className="login-button" onClick={Handleclick}>{isLogin? "Sign In":"Sign Up"}</button>
     <span>
