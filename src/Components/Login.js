@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 import Title from "./Title";
 import {ValidateData} from "./utils/Validate";
-import {createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile} from "firebase/auth";
 import { auth } from "./utils/Firebase";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "./utils/UserSlice";
 
 const Login = ()=>{
     const [isLogin,setIsLogin]=useState(true);
@@ -11,9 +12,10 @@ const Login = ()=>{
     const toggleLogin = ()=>(
         setIsLogin(!isLogin)
     );
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const email = useRef(null);
     const password=useRef(null);
+    const name = useRef(null);
     const Handleclick =()=>{
   const message=ValidateData(email.current.value,password.current.value)
    setErrMessage(message);
@@ -23,7 +25,16 @@ const Login = ()=>{
   .then((userCredential) => {
     const user = userCredential.user;
     console.log(user);
-    navigate("/Browse");
+    updateProfile(user, {
+        displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+      }).then(() => {
+        const {uid,email,displayName}=auth.currentUser;
+        dispatch(addUser({uid:uid,email:email,displayName:displayName}))
+        console.log("registration successful")
+      }).catch((error) => { 
+        console.log(error); 
+        console.log("sign-up failed");
+      });
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -35,7 +46,7 @@ const Login = ()=>{
     .then((userCredential) => { 
       const user = userCredential.user;
       console.log(user);
-      navigate("/Browse");
+      console.log("sign in successful")
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -52,7 +63,7 @@ return(
 </div>
 <form onSubmit={(e)=>(e.preventDefault())}>
   <h1> {!isLogin? "SIGN UP":"SIGN IN"}</h1>
-  {!isLogin && <input className="login-input" placeholder="Enter Name"></input> }
+  {!isLogin && <input className="login-input" ref={name} placeholder="Enter Name"></input> }
     <input className="login-input" ref={email} placeholder="Enter Email"></input>
     <input type="password" className="login-input"  ref={ password} placeholder="Enter Password"></input>
     <p className="validation">{errmessage}</p>

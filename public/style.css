@@ -69,7 +69,7 @@ form input{
     height: 20px;
     border: 2px solid black;
 }
-form button{
+.login-button{
     width: 200px;
     font-weight: 700;
     color: aliceblue;
@@ -82,7 +82,7 @@ form button{
 .background{
     position: absolute;
 }
-form button:hover{
+ .login-button:hover{
     background-color: greenyellow;
     cursor: pointer;
     box-shadow: 0px 0px 20px red;
@@ -100,4 +100,11 @@ form button:hover{
  .validation{
     color: red;
     margin: 1px;
+ }
+ .browse-header{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    background:linear-gradient(rgb(33, 125, 237) ,rgb(18, 174, 102));
+    opacity: 90%;
  }
