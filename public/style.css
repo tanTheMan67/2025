@@ -108,3 +108,30 @@ form input{
     background:linear-gradient(rgb(33, 125, 237) ,rgb(18, 174, 102));
     opacity: 90%;
  }
+ .vid-title{
+    padding-top: 200px;
+    padding-left: 40px;
+ }
+ .vid-title h1{
+    text-transform: uppercase;
+    font-weight: 800;
+ }
+ .vid-title p{
+  width: 46%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+ }
+ .vid-title button{
+    width: 140px;
+    margin-top: 10px;
+    margin-right: 20px;
+    padding: 8px;
+    font-weight: 700;
+   
+    color: aliceblue;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.5); 
+
+
+ }

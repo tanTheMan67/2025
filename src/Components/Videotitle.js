@@ -1,11 +1,11 @@
 const Videotitle = ({title,overview})=>{
     return (
-        <div>
+        <div className=" vid-title">
             <h1>{title}</h1>
             <p>{overview}</p>
             <div>
-                <button>Play</button>
-                <button>More info</button>
+                <button>Play ▶️</button>
+                <button>More info ℹ️</button>
             </div>
             </div>
     )
