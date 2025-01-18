@@ -7,11 +7,11 @@ const CentralContainer = ()=>{
     if(!movies)return;
    const MainMovie = movies[0];
     console.log(MainMovie);
-    const {title,overview}= MainMovie;
+    const {title,overview,id}= MainMovie;
     return(
-        <div>
+        <div className="central" >
    <Videotitle title={title} overview={overview}/>
-    <Videobackground/>
+    <Videobackground MovieId={id}/>
         </div>
     )
 }
