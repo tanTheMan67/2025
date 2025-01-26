@@ -4,12 +4,13 @@ import { auth } from "./utils/Firebase";
 import useNowPlaying from "./hooks/UseNowPlaying";
 import CentralContainer from "./CentralContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import toast from 'react-hot-toast';
 
 const Browse = ()=>{
     useNowPlaying();
     const handleSignOut =()=>{
         signOut(auth).then(() => {
-            alert("Do you really want to Sign Out?🫠🙁☹️");
+           toast("Logout Successful!")
           }).catch((error) => {
            
           });

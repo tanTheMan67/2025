@@ -5,6 +5,10 @@
 .login-container{
     position: relative;
 }
+.title {
+    position: relative; /* Ensure the title stays above the video */
+    z-index: 5; /* Higher than the video but below other key elements if needed */
+}
 
 .logo{
     display: flex;
@@ -104,10 +108,12 @@ form input{
  .browse-header{
     display: flex;
     justify-content: space-between;
-    height: 80px;
-    background:linear-gradient(rgb(33, 125, 237) ,rgb(18, 174, 102));
+   height: 80px;
+   background:linear-gradient(rgb(33, 125, 237) ,rgb(18, 174, 102));
     opacity: 90%;
+    z-index: 12;
     border-bottom: 2px solid black;
+    width: 100vw;
  }
  
  .vid-title h1{
@@ -119,22 +125,33 @@ form input{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 400;
  }
- .video-bg{
-    width: 100vw;
-    background-color: #d35400;
- }
- .video-bg iframe{
-    width: 100vw;
+ 
+.video-bg {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; 
+    z-index: -1; 
+}
+
+.video-bg iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; 
     height: 100vh;
- }
- 
- 
+    border: none; 
+    object-fit: cover; 
+}
  .vid-title{
-    padding-top: 300px;
-    padding-left: 80px;
+    padding-top: 360px;
+    padding-left: 130px;
     position: absolute;
     aspect-ratio: 16/9;
     color: aliceblue;
+    background: linear-gradient(to right,rgba(0, 0, 1, 0.577),transparent);
  }
   .vid-title button{
     width: 140px;
@@ -154,4 +171,17 @@ form input{
     color: black;
     box-shadow: 0px 0px 40px 1px rgb(255, 170, 0);
  }
- 
+ .movie-list{
+    position:relative;
+    top: 90vh;
+    color: aliceblue;
+ }
+ .movie-card{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;  
+ }
+ .cards{
+    margin-left: 8px;
+    box-shadow: 0px 0px 20px red;
+ }

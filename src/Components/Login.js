@@ -5,6 +5,7 @@ import {createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile}
 import { auth } from "./utils/Firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/UserSlice";
+import toast from 'react-hot-toast';
 
 const Login = ()=>{
     const [isLogin,setIsLogin]=useState(true);
@@ -30,6 +31,7 @@ const Login = ()=>{
       }).then(() => {
         const {uid,email,displayName}=auth.currentUser;
         dispatch(addUser({uid:uid,email:email,displayName:displayName}))
+        toast("sign-up successful!");
         console.log("registration successful")
       }).catch((error) => { 
         console.log(error); 
@@ -47,10 +49,13 @@ const Login = ()=>{
       const user = userCredential.user;
       console.log(user);
       console.log("sign in successful")
+      toast("Sign in Successful")
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(errmessage+" "+errorCode);
+      toast("sign-in Error");
     });
    }
     };
@@ -69,7 +74,7 @@ return(
     <p className="validation">{errmessage}</p>
     <button className="login-button" onClick={Handleclick}>{isLogin? "Sign In":"Sign Up"}</button>
     <span>
-    <p>{!isLogin?"New to Movvi?":"Already A user?"}<a onClick={toggleLogin}> {isLogin?"Login now":"Sign up now"}</a></p>
+    <p>{isLogin?"New to Movvi?":"Already A user?"}<a onClick={toggleLogin}> {!isLogin?"Login now":"Sign up now"}</a></p>
     </span>
 </form>
 </div> 
